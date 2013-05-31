@@ -483,7 +483,42 @@ $(function(){
     $(window).trigger("resize");
     create_open();
     create_save();
-    
+ 
+     //zzz add: visual style we will use
+                var visual_style = {
+                    nodes: {
+			shape: {
+			 discreteMapper: {
+				attrName: "peak",
+				entries:[
+					{ attrValue: "True", value: "TRIANGLE" },					{ attrValue: "False", value: "CIRCLE" }
+				]
+				}
+				},
+                        size: {
+                            defaultValue: 25,
+                            continuousMapper: { attrName: "degree", minValue: 25, maxValue: 75 }
+                        },
+                        color: {
+                            discreteMapper: {
+                                attrName: "promoter",
+                                entries: [
+                                    { attrValue: "True", value: "#FF0000" },
+                                    { attrValue: "False", value: "#0000FF" }
+                                    
+                                ]
+                            }
+                        },
+                        labelHorizontalAnchor: "center"
+                    },
+                    edges: {
+                        width: {
+			 defaultValue: 3,
+                            continuousMapper: { attrName: "petcount", minValue: 3, maxValue: 15 }
+			},
+                        color: "#808080"
+                    }
+                }; 
     $("#cytoweb_container").bind("available", function(){
     	dirty_attributes_cache();
 
@@ -504,7 +539,7 @@ $(function(){
         
         $(window).trigger("resize");
 
-        var style = vis.visualStyle();
+        var style = vis.visualStyle(visual_style);
         
         // Let's simplify the style and make the creation of the visual styles tab faster.
         
@@ -1794,7 +1829,7 @@ open_graph(loadGraph);
             ]
         };
         
-        var cached_style = vis.visualStyle();
+        var cached_style = vis.visualStyle(visual_style);
 
         function get_property(variable){
             var objs = variable.split(".");

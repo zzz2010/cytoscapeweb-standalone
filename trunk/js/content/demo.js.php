@@ -500,14 +500,9 @@ $(function(){
                             continuousMapper: { attrName: "degree", minValue: 25, maxValue: 75 }
                         },
                         color: {
-                            discreteMapper: {
-                                attrName: "promoter",
-                                entries: [
-                                    { attrValue: "True", value: "#FF0000" },
-                                    { attrValue: "False", value: "#0000FF" }
-                                    
-                                ]
-                            }
+			    
+                            passthroughMapper: { attrName: "color" }        
+                            
                         },
                         labelHorizontalAnchor: "center"
                     },
